@@ -108,3 +108,11 @@ public class GlobalExceptionHandler {
 ### 小提示
 - null字段别反序列化了
 - 系统异常，转化为自定义异常，更可控
+- url如果是数字参数，请使用正则表达式，更安全
+
+>
+```
+    @RequestMapping("/user/{userId:\\d+}")
+    public ApiResult<User> user(@PathVariable("userId")String userid) throws MyException{
+      }
+```

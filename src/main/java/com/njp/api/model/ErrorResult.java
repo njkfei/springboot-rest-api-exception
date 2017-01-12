@@ -12,6 +12,4 @@ public class ErrorResult<T> {
     public String error;
     public String url;
     public T data;
-
-
 }
