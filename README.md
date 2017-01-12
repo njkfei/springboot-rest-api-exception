@@ -41,6 +41,9 @@ http://localhost:9876/api/user4?userid=23
 ```
 
 ## 3. show me the code
+
+> 关键：@RestControllerAdvice
+
 ### 3.0 关系统返回的异常
 
 ```

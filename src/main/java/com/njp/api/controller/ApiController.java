@@ -19,7 +19,7 @@ public class ApiController {
         // Nothing to do
     }
 
-    @RequestMapping("/demo/{data")
+    @RequestMapping("/demo/{data}")
     public ApiResult<String> demo(@PathVariable("data")String data){
         ApiResult<String> result = new ApiResult<String>();
         result.data = data;
