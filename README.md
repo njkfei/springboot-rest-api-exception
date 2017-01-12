@@ -68,7 +68,7 @@ public class ApiResult<T> {
 
 ```
  @RequestMapping("/user4")
-    public ApiResult<User> user4( @RequestParam("userid")String userid ) throws Exception{
+    public ApiResult<User> user4( @RequestParam("userid")String userid ) throws MyException{
         ApiResult<User> result = new ApiResult<User>();
         User user = new User();
 
@@ -76,7 +76,7 @@ public class ApiResult<T> {
         try {
             id = Integer.valueOf(userid);
         }catch(Exception e){
-            throw new Exception("Number convert exception");
+            throw new MyException("Number convert exception");  // 看这里啊！！！！！！！！！！！！
         }
         user.setUserId(id);
         user.setUserName("hello");
@@ -107,4 +107,4 @@ public class GlobalExceptionHandler {
 
 ### 小提示
 - null字段别反序列化了
-- 系统异步，转化为自定义异常，更可控
+- 系统异常，转化为自定义异常，更可控
