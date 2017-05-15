@@ -119,3 +119,48 @@ public class GlobalExceptionHandler {
     public ApiResult<User> user(@PathVariable("userId")String userid) throws MyException{
       }
 ```
+
+### 4 系统错误怎么搞
+> Q: 404,这时候，app拿到这个返回，会无语的，怎么搞呢？
+
+
+> A: 重写/error接口
+```$xslt
+@RestController
+public class HttpErrorHandler implements ErrorController {
+
+    private final static String ERROR_PATH = "/error";
+
+    @RequestMapping(value = ERROR_PATH)
+    @ResponseBody
+    public Object error(HttpServletRequest request) {
+        ErrorResult result = new ErrorResult();
+        result.code=404;
+        result.message="not found(404)";
+        result.url=request.getRequestURL().toString();
+        return result;
+    }
+
+
+    @Override
+    public String getErrorPath() {
+        return ERROR_PATH;
+    }
+}
+```
+
+### 5 安全怎么搞
+> Q:　不同的用户，权限不一样，有些人有查看的权限，有些人有修改的权限，有些人的删除的权限，如何搞
+
+> A: 通过拦截机制，搞，思路如下。
+
+* token机制
+* 路由
+* 规则引擎
+
+1.　用户登陆，换token
+2.　用户以后的请求，带上token
+3.  url拦截，查token,通过token，查路由表
+4.　根据路由规则，决定是放还是弃
+
+很简单，对吧。
