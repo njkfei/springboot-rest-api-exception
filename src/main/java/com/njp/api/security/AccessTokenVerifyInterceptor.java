@@ -28,6 +28,10 @@ public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
             throws Exception {
         log.info("access token before");
         boolean flag = false;
+
+        // TODO 协议验证
+        //　APIUTILS.check();
+
 // token
         String accessToken = request.getParameter("token");
         if (accessToken != null && accessToken.isEmpty() == false) {
