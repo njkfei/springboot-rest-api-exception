@@ -90,7 +90,7 @@ public class ApiResult<T> {
 ```
 
 > 不要去试TypeMismatchException，NumberFormatException,没戏。还是老实
-将string 转为int吧。系统的系统，通过GlobalExceptionHandler是捕猎不到的。
+将string 转为int吧。系统的错误，通过GlobalExceptionHandler是捕猎不到的。
 
 ### 3.2 开启全局异常处理器
 如下所示。
