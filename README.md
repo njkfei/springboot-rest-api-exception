@@ -65,6 +65,16 @@ public class ApiResult<T> {
 }
 ```
 
+> 说明:上面的方法，data字段，还是会返回null的。如果在data里面想不返回null，需要在data的类定义上加上注解。
+如下所示　。
+
+```$xslt
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ResultData {
+}
+```
+
+
 ### 3.1 controller返回异常
 如下所示。
 
