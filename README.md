@@ -70,7 +70,12 @@ public class ApiResult<T> {
 
 ```$xslt
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResultData {
+@Data
+public class User {
+    private int userId;
+    private String userName;
+    private String userPass;
+}
 }
 ```
 
