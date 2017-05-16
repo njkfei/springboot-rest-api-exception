@@ -27,7 +27,7 @@ public class AccessTokenVerifyInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         log.info("access token before");
-        boolean flag = false;
+        boolean flag = true;
 
         // TODO 协议验证
         //　APIUTILS.check();

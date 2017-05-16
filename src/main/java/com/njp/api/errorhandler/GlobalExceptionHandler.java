@@ -4,6 +4,7 @@ import com.njp.api.model.ErrorResult;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -19,10 +20,21 @@ import javax.validation.ConstraintViolationException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+
+
+    @ExceptionHandler(value = { HttpMediaTypeNotAcceptableException.class })
+    public ErrorResult httpMediaTypeNotAcceptableException(HttpServletRequest req, Exception ex) {
+        ErrorResult result = new ErrorResult();
+        result.code=512;
+        result.message=ex.getMessage();
+        result.url = req.getRequestURL().toString();
+        return result;
+    }
+
     @ExceptionHandler(value = { NoHandlerFoundException.class })
     public ErrorResult noHandlerFoundException(HttpServletRequest req, Exception ex) {
         ErrorResult result = new ErrorResult();
-        result.code=200;
+        result.code=513;
         result.message=ex.getMessage();
         result.url = req.getRequestURL().toString();
         return result;
