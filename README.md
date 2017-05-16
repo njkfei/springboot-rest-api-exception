@@ -178,3 +178,50 @@ public class HttpErrorHandler implements ErrorController {
 4.　根据路由规则，决定是放还是弃
 
 很简单，对吧。
+
+### 6 文档代码一体化
+原理列表
+* swagger
+* swagger-ui web server
+* api service
+
+swagger是api文档一体化的一种方案．
+
+api service返回swagger.json数据．
+
+swagger-ui-web server解析swagger.json数据．进行页面展示．
+
+
+
+
+使用swagger即可．
+
+需要部署swagger-ui服务器，将url指向本服务localhost:8888/api-docs即可．
+
+小坑如下:
+#### 6.1 配置跨域
+否则，swagger-ui服务器无法获得后端请求数据．
+```$xslt
+  // 配置跨域
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
+    }
+}
+```
+
+#### 6.2 配置
+改一下url即可．
+```
+  const ui = SwaggerUIBundle({
+    //url: "http://petstore.swagger.io/v2/swagger.json",
+    url: "http://localhost:9876/api-docs",
+```
+
+### 7 swagger java注解
+* @Api 作用在控制器上
+* @ApiModel　作用在model　class上面
+* @ApiModelProperty　作用在model class里面的属性上面
+* @ApiOperation　作用的requestMapping上面．
+* @ApiResponses　描述该API操作可能出现的异常情况。
+* @ApiParam 描述该API操作接受的参数类型
